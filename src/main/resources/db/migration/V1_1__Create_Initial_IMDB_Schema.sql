@@ -1,0 +1,64 @@
+CREATE TABLE NAME (
+   NCONST            VARCHAR(31),
+   PRIMARY_NAME      VARCHAR(255),
+   BIRTH_YEAR        INT,
+   DEATH_YEAR        INT );
+
+CREATE TABLE TITLE (
+   NCONST            VARCHAR(31),
+   TITLE_TYPE        VARCHAR(31),
+   PRIMARY_TITLE     VARCHAR(1023),
+   ORIGINAL_TITLE    VARCHAR(1023),
+   IS_ADULT          BOOLEAN,
+   START_YEAR        INT,
+   END_YEAR          INT,
+   RUNTIME_MINUTES   INT );
+
+CREATE TABLE NAME_PROFESSION (
+   NCONST            VARCHAR(31),
+   PROFESSION        VARCHAR(31) );
+
+CREATE TABLE NAME_TITLE (
+   NCONST            VARCHAR(31),
+   TCONST            VARCHAR(31) );
+
+CREATE TABLE TITLE_GENRE (
+   NCONST            VARCHAR(31),
+   GENRE             VARCHAR(31) );
+
+CREATE TABLE TITLE_AKA (
+   TCONST            VARCHAR(31),
+   ORDERING          INT,          
+   TITLE             VARCHAR(1023),          
+   REGION            VARCHAR(15),          
+   LANGUAGE          VARCHAR(63),          
+   TYPES             VARCHAR(63),          
+   ATTRIBUTES        VARCHAR(63),          
+   IS_ORIGINAL_TITLE BOOLEAN );
+
+CREATE TABLE TITLE_DIRECTOR (
+   TCONST            VARCHAR(31),
+   NCONST            VARCHAR(31) );
+
+CREATE TABLE TITLE_WRITER (
+   TCONST            VARCHAR(31),
+   NCONST            VARCHAR(31) );
+
+CREATE TABLE TITLE_EPISODE (
+   TCONST            VARCHAR(31),
+   TCONST_PARENT     VARCHAR(31),
+   SEASON_NUMBER     INT,        
+   EPISODE_NUMBER    INT );
+
+CREATE TABLE TITLE_PRINCIPALS (
+   TCONST            VARCHAR(31),
+   ORDERING          INT,        
+   NCONST            VARCHAR(31),
+   CATEGORY          VARCHAR(63),
+   JOB               VARCHAR(255),
+   CHARACTER_PLAYED  VARCHAR(255) );
+
+CREATE TABLE TITLE_RATING (
+   TCONST            VARCHAR(31),
+   AVERAGE_RATING    VARCHAR(15),
+   NUMBER_OF_VOTES   INT );
