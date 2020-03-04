@@ -19,7 +19,7 @@ We will start with a database used by IMDB.  We will go through the following mi
 - V2_3: a migration to drop the PRIMARY_NAME column from the NAME table.  This is a SQL based migration.
 
 ##### Demo
-##### step_1_start_mysql
+###### step_1_start_mysql
 When run, this script
 ```bash
 #!/usr/bin/env bash
@@ -78,7 +78,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 ```
 We have merely started up a Docker container with a local MySQL database.
 
-##### step_2_flyway_migrate_V1.sh
+###### step_2_flyway_migrate_V1.sh
 When run, this script
 ```bash
 #!/usr/bin/env bash
@@ -297,7 +297,7 @@ It then migrates to version 1_1 and then 1_2 (the first of which would be done A
 
 By the end of the script, one can use tools like MySQL Workbench to look around in the database created.  Of course, a nice automated BDD test here would be even better!
 
-##### step_3_flyway_migrate_V2.sh
+###### step_3_flyway_migrate_V2.sh
 When run, this script
 ```bash
 #!/usr/bin/env bash
@@ -530,226 +530,7 @@ The same basic comments about this script being tedious apply from the last scri
 It's really quite simple.  We  need three steps to refactor a database that has a VARCHAR column into a database with two VARCHAR columns and preserve design intent.  We can use SQL based migrations to add the two new columns, and remove the superfluous one after a JDBC based migration the understands how to read a string of first and last name from a column and then split it into a first name column and a last name column. 
 
 
-##### step_2_flyway_migrate_V1.sh
-When run, this script
-```bash
-#!/usr/bin/env bash
-
-figlet -w 200 -f standard "Flyway migrate to V1 (create initial database)"
-
-mvn compile flyway:clean
-
-cd src/main/java/common/data
-./runAt10PerCent.sh
-cd -
-
-figlet -w 160 -f small "Flyway V1_1 (initial schema)"
-mvn -Dflyway.target=1_1 flyway:info flyway:migrate flyway:info
-
-figlet -w 160 -f small "Flyway V1_2 (initial static data)"
-mvn -Dflyway.target=1_2 flyway:info flyway:migrate flyway:info
-```
-produces
-
-```console
-|  ___| |_   ___      ____ _ _   _   _ __ ___ (_) __ _ _ __ __ _| |_ ___  | |_ ___   \ \   / / |  / /___ _ __ ___  __ _| |_ ___  (_)_ __ (_) |_(_) __ _| |
-| |_  | | | | \ \ /\ / / _` | | | | | '_ ` _ \| |/ _` | '__/ _` | __/ _ \ | __/ _ \   \ \ / /| | | |/ __| '__/ _ \/ _` | __/ _ \ | | '_ \| | __| |/ _` | |
-|  _| | | |_| |\ V  V / (_| | |_| | | | | | | | | (_| | | | (_| | ||  __/ | || (_) |   \ V / | | | | (__| | |  __/ (_| | ||  __/ | | | | | | |_| | (_| | |
-|_|   |_|\__, | \_/\_/ \__,_|\__, | |_| |_| |_|_|\__, |_|  \__,_|\__\___|  \__\___/     \_/  |_| | |\___|_|  \___|\__,_|\__\___| |_|_| |_|_|\__|_|\__,_|_|
-         |___/               |___/               |___/                                            \_\                                                     
-     _       _        _                  __  
-  __| | __ _| |_ __ _| |__   __ _ ___  __\ \ 
- / _` |/ _` | __/ _` | '_ \ / _` / __|/ _ \ |
-| (_| | (_| | || (_| | |_) | (_| \__ \  __/ |
- \__,_|\__,_|\__\__,_|_.__/ \__,_|___/\___| |
-                                         /_/ 
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building advanced-flyway-migrations 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ advanced-flyway-migrations ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Copying 3 resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ advanced-flyway-migrations ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 10 source files to /home/howarddeiner/IdeaProjects/advanced-flyway-migrations/target/classes
-[INFO] 
-[INFO] --- flyway-maven-plugin:6.2.4:clean (default-cli) @ advanced-flyway-migrations ---
-[INFO] Flyway Community Edition 6.2.4 by Redgate
-[INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully cleaned schema `zipster` (execution time 00:00.010s)
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.527 s
-[INFO] Finished at: 2020-03-04T12:39:23-05:00
-[INFO] Final Memory: 20M/231M
-[INFO] ------------------------------------------------------------------------
-/home/howarddeiner/IdeaProjects/advanced-flyway-migrations
- ___ _                        __   ___   _    ___      _ _   _      _          _                 __  
-| __| |_  ___ __ ____ _ _  _  \ \ / / | / |  / (_)_ _ (_) |_(_)__ _| |  ___ __| |_  ___ _ __  __ \ \ 
-| _|| | || \ V  V / _` | || |  \ V /| | | | | || | ' \| |  _| / _` | | (_-</ _| ' \/ -_) '  \/ _` | |
-|_| |_|\_, |\_/\_/\__,_|\_, |   \_/ |_|_|_| | ||_|_||_|_|\__|_\__,_|_| /__/\__|_||_\___|_|_|_\__,_| |
-       |__/             |__/         |___|   \_\                                                 /_/ 
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building advanced-flyway-migrations 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
-[INFO] Flyway Community Edition 6.2.4 by Redgate
-[INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Schema version: << Empty Schema >>
-[INFO] 
-[INFO] +-----------+---------+---------------------------------+------+--------------+--------------+
-| Category  | Version | Description                     | Type | Installed On | State        |
-+-----------+---------+---------------------------------+------+--------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  |              | Pending      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC |              | Above Target |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  |              | Above Target |
-| Versioned | 2.2     | Split Primary Name              | JDBC |              | Above Target |
-| Versioned | 2.3     | Drop Primary Name Column        | SQL  |              | Above Target |
-+-----------+---------+---------------------------------+------+--------------+--------------+
-
-[INFO] 
-[INFO] --- flyway-maven-plugin:6.2.4:migrate (default-cli) @ advanced-flyway-migrations ---
-[INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully validated 5 migrations (execution time 00:00.005s)
-[INFO] Creating Schema History table `zipster`.`flyway_schema_history` ...
-[INFO] Current version of schema `zipster`: << Empty Schema >>
-[INFO] Migrating schema `zipster` to version 1.1 - Create Initial IMDB Schema
-[INFO] Successfully applied 1 migration to schema `zipster` (execution time 00:00.774s)
-[INFO] 
-[INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
-[INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Schema version: 1.1
-[INFO] 
-[INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Category  | Version | Description                     | Type | Installed On        | State        |
-+-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC |                     | Above Target |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  |                     | Above Target |
-| Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
-| Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
-+-----------+---------+---------------------------------+------+---------------------+--------------+
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.716 s
-[INFO] Finished at: 2020-03-04T12:39:25-05:00
-[INFO] Final Memory: 11M/227M
-[INFO] ------------------------------------------------------------------------
-
- ___ _                        __   ___   ___    ___      _ _   _      _      _        _   _         _      _      __  
-| __| |_  ___ __ ____ _ _  _  \ \ / / | |_  )  / (_)_ _ (_) |_(_)__ _| |  __| |_ __ _| |_(_)__   __| |__ _| |_ __ \ \ 
-| _|| | || \ V  V / _` | || |  \ V /| |  / /  | || | ' \| |  _| / _` | | (_-<  _/ _` |  _| / _| / _` / _` |  _/ _` | |
-|_| |_|\_, |\_/\_/\__,_|\_, |   \_/ |_|_/___| | ||_|_||_|_|\__|_\__,_|_| /__/\__\__,_|\__|_\__| \__,_\__,_|\__\__,_| |
-       |__/             |__/         |___|     \_\                                                                /_/ 
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building advanced-flyway-migrations 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
-[INFO] Flyway Community Edition 6.2.4 by Redgate
-[INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Schema version: 1.1
-[INFO] 
-[INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Category  | Version | Description                     | Type | Installed On        | State        |
-+-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC |                     | Pending      |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  |                     | Above Target |
-| Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
-| Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
-+-----------+---------+---------------------------------+------+---------------------+--------------+
-
-[INFO] 
-[INFO] --- flyway-maven-plugin:6.2.4:migrate (default-cli) @ advanced-flyway-migrations ---
-[INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully validated 5 migrations (execution time 00:00.008s)
-[INFO] Current version of schema `zipster`: 1.1
-[INFO] Migrating schema `zipster` to version 1.2 - Load Initial IMDB Data
-src/main/java/common/data/name.basics.tsv.smaller - 62351 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/name.basics.tsv.smaller - 5% complete - elapsed time = 0:15 - remaining time = 4:43
-src/main/java/common/data/name.basics.tsv.smaller - 11% complete - elapsed time = 0:30 - remaining time = 4:00
-src/main/java/common/data/name.basics.tsv.smaller - 20% complete - elapsed time = 0:45 - remaining time = 2:58
-src/main/java/common/data/name.basics.tsv.smaller - 29% complete - elapsed time = 1:00 - remaining time = 2:22
-src/main/java/common/data/name.basics.tsv.smaller - 39% complete - elapsed time = 1:15 - remaining time = 1:53
-src/main/java/common/data/name.basics.tsv.smaller - 50% complete - elapsed time = 1:30 - remaining time = 1:29
-src/main/java/common/data/name.basics.tsv.smaller - 60% complete - elapsed time = 1:45 - remaining time = 1:07
-src/main/java/common/data/name.basics.tsv.smaller - 70% complete - elapsed time = 2:00 - remaining time = 0:50
-src/main/java/common/data/name.basics.tsv.smaller - 79% complete - elapsed time = 2:15 - remaining time = 0:34
-src/main/java/common/data/name.basics.tsv.smaller - 89% complete - elapsed time = 2:30 - remaining time = 0:18
-src/main/java/common/data/name.basics.tsv.smaller - 99% complete - elapsed time = 2:45 - remaining time = 0:00
-src/main/java/common/data/name.basics.tsv.smaller - 100% complete - elapsed time = 2:45 - remaining time = 0:00
-src/main/java/common/data/title.akas.tsv.smaller - 25733 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.akas.tsv.smaller - 100% complete - elapsed time = 0:13 - remaining time = 0:00
-src/main/java/common/data/title.basics.tsv.smaller - 37360 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.basics.tsv.smaller - 30% complete - elapsed time = 0:15 - remaining time = 0:33
-src/main/java/common/data/title.basics.tsv.smaller - 64% complete - elapsed time = 0:30 - remaining time = 0:16
-src/main/java/common/data/title.basics.tsv.smaller - 95% complete - elapsed time = 0:45 - remaining time = 0:02
-src/main/java/common/data/title.basics.tsv.smaller - 100% complete - elapsed time = 0:47 - remaining time = 0:00
-src/main/java/common/data/title.crew.tsv.smaller - 37375 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.crew.tsv.smaller - 38% complete - elapsed time = 0:15 - remaining time = 0:24
-src/main/java/common/data/title.crew.tsv.smaller - 64% complete - elapsed time = 0:30 - remaining time = 0:16
-src/main/java/common/data/title.crew.tsv.smaller - 87% complete - elapsed time = 0:45 - remaining time = 0:06
-src/main/java/common/data/title.crew.tsv.smaller - 100% complete - elapsed time = 0:52 - remaining time = 0:00
-src/main/java/common/data/title.episode.tsv.smaller - 25414 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.episode.tsv.smaller - 100% complete - elapsed time = 0:11 - remaining time = 0:00
-src/main/java/common/data/title.principals.tsv.smaller - 212557 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.principals.tsv.smaller - 15% complete - elapsed time = 0:15 - remaining time = 1:21
-src/main/java/common/data/title.principals.tsv.smaller - 27% complete - elapsed time = 0:30 - remaining time = 1:18
-src/main/java/common/data/title.principals.tsv.smaller - 42% complete - elapsed time = 0:45 - remaining time = 1:01
-src/main/java/common/data/title.principals.tsv.smaller - 58% complete - elapsed time = 1:00 - remaining time = 0:43
-src/main/java/common/data/title.principals.tsv.smaller - 73% complete - elapsed time = 1:15 - remaining time = 0:26
-src/main/java/common/data/title.principals.tsv.smaller - 90% complete - elapsed time = 1:30 - remaining time = 0:09
-src/main/java/common/data/title.principals.tsv.smaller - 100% complete - elapsed time = 1:39 - remaining time = 0:00
-src/main/java/common/data/title.ratings.tsv.smaller - 6128 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.ratings.tsv.smaller - 100% complete - elapsed time = 0:03 - remaining time = 0:00
-[INFO] Successfully applied 1 migration to schema `zipster` (execution time 06:33.254s)
-[INFO] 
-[INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
-[INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Schema version: 1.2
-[INFO] 
-[INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Category  | Version | Description                     | Type | Installed On        | State        |
-+-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success      |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  |                     | Above Target |
-| Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
-| Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
-+-----------+---------+---------------------------------+------+---------------------+--------------+
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 06:34 min
-[INFO] Finished at: 2020-03-04T12:46:01-05:00
-[INFO] Final Memory: 9M/169M
-[INFO] ------------------------------------------------------------------------
-
-```
-
-The script is a little tedious in showing everything going on in deep detail.
-
-Reading along, the script first compiles all of the Java code, invokes a script to get rid of 90% of the data to import (to make the import time more bearable),and then invokes the FlyWay plug-in to clean the schema (which is only necessary if the databaase already has things in it).
-
-It then migrates to version 1_1 and then 1_2 (the first of which would be done ANYWAY, by invoking the second).  It also uses the FlyWay plug-in to show the current migration state, then invokes th migration, then shows the migration state onc again (just to show you that it did sometthing!)
-
-By the end of the script, one can use tools like MySQL Workbench to look around in the database created.  Of course, a nice automated BDD test here would be even better!
-
-##### step_4_destroy_mysql.sh
+###### step_4_destroy_mysql.sh
 When run, this script
 ```bash
 #!/usr/bin/env bash
