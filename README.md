@@ -141,10 +141,15 @@ mvn -Dflyway.target=1_1 flyway:info flyway:migrate flyway:info
 
 figlet -w 160 -f small "Flyway V1_2 (initial static data)"
 mvn -Dflyway.target=1_2 flyway:info flyway:migrate flyway:info
+
+cd src/test/python
+behave -v features/step_2_tests.feature
+cd -
 ```
 produces
 
 ```console
+ _____ _                                       _                 _         _         __     ___    __                   _         _       _ _   _       _ 
 |  ___| |_   ___      ____ _ _   _   _ __ ___ (_) __ _ _ __ __ _| |_ ___  | |_ ___   \ \   / / |  / /___ _ __ ___  __ _| |_ ___  (_)_ __ (_) |_(_) __ _| |
 | |_  | | | | \ \ /\ / / _` | | | | | '_ ` _ \| |/ _` | '__/ _` | __/ _ \ | __/ _ \   \ \ / /| | | |/ __| '__/ _ \/ _` | __/ _ \ | | '_ \| | __| |/ _` | |
 |  _| | | |_| |\ V  V / (_| | |_| | | | | | | | | (_| | | | (_| | ||  __/ | || (_) |   \ V / | | | | (__| | |  __/ (_| | ||  __/ | | | | | | |_| | (_| | |
@@ -167,19 +172,18 @@ produces
 [INFO] Copying 3 resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ advanced-flyway-migrations ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 10 source files to /home/howarddeiner/IdeaProjects/advanced-flyway-migrations/target/classes
+[INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:clean (default-cli) @ advanced-flyway-migrations ---
 [INFO] Flyway Community Edition 6.2.4 by Redgate
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully cleaned schema `zipster` (execution time 00:00.010s)
+[INFO] Successfully cleaned schema `zipster` (execution time 00:00.014s)
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.527 s
-[INFO] Finished at: 2020-03-04T12:39:23-05:00
-[INFO] Final Memory: 20M/231M
+[INFO] Total time: 1.438 s
+[INFO] Finished at: 2020-03-05T10:52:42-05:00
+[INFO] Final Memory: 14M/266M
 [INFO] ------------------------------------------------------------------------
 /home/howarddeiner/IdeaProjects/advanced-flyway-migrations
  ___ _                        __   ___   _    ___      _ _   _      _          _                 __  
@@ -211,11 +215,11 @@ produces
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:migrate (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully validated 5 migrations (execution time 00:00.005s)
+[INFO] Successfully validated 5 migrations (execution time 00:00.006s)
 [INFO] Creating Schema History table `zipster`.`flyway_schema_history` ...
 [INFO] Current version of schema `zipster`: << Empty Schema >>
 [INFO] Migrating schema `zipster` to version 1.1 - Create Initial IMDB Schema
-[INFO] Successfully applied 1 migration to schema `zipster` (execution time 00:00.774s)
+[INFO] Successfully applied 1 migration to schema `zipster` (execution time 00:00.794s)
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
@@ -224,7 +228,7 @@ produces
 [INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
 | Category  | Version | Description                     | Type | Installed On        | State        |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 10:52:44 | Success      |
 | Versioned | 1.2     | Load Initial IMDB Data          | JDBC |                     | Above Target |
 | Versioned | 2.1     | Add First and Last Name Columns | SQL  |                     | Above Target |
 | Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
@@ -234,11 +238,10 @@ produces
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 1.716 s
-[INFO] Finished at: 2020-03-04T12:39:25-05:00
-[INFO] Final Memory: 11M/227M
+[INFO] Total time: 1.810 s
+[INFO] Finished at: 2020-03-05T10:52:45-05:00
+[INFO] Final Memory: 11M/222M
 [INFO] ------------------------------------------------------------------------
-
  ___ _                        __   ___   ___    ___      _ _   _      _      _        _   _         _      _      __  
 | __| |_  ___ __ ____ _ _  _  \ \ / / | |_  )  / (_)_ _ (_) |_(_)__ _| |  __| |_ __ _| |_(_)__   __| |__ _| |_ __ \ \ 
 | _|| | || \ V  V / _` | || |  \ V /| |  / /  | || | ' \| |  _| / _` | | (_-<  _/ _` |  _| / _| / _` / _` |  _/ _` | |
@@ -258,7 +261,7 @@ produces
 [INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
 | Category  | Version | Description                     | Type | Installed On        | State        |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 10:52:44 | Success      |
 | Versioned | 1.2     | Load Initial IMDB Data          | JDBC |                     | Pending      |
 | Versioned | 2.1     | Add First and Last Name Columns | SQL  |                     | Above Target |
 | Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
@@ -268,47 +271,47 @@ produces
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:migrate (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully validated 5 migrations (execution time 00:00.008s)
+[INFO] Successfully validated 5 migrations (execution time 00:00.014s)
 [INFO] Current version of schema `zipster`: 1.1
 [INFO] Migrating schema `zipster` to version 1.2 - Load Initial IMDB Data
 src/main/java/common/data/name.basics.tsv.smaller - 62351 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/name.basics.tsv.smaller - 5% complete - elapsed time = 0:15 - remaining time = 4:43
-src/main/java/common/data/name.basics.tsv.smaller - 11% complete - elapsed time = 0:30 - remaining time = 4:00
-src/main/java/common/data/name.basics.tsv.smaller - 20% complete - elapsed time = 0:45 - remaining time = 2:58
-src/main/java/common/data/name.basics.tsv.smaller - 29% complete - elapsed time = 1:00 - remaining time = 2:22
-src/main/java/common/data/name.basics.tsv.smaller - 39% complete - elapsed time = 1:15 - remaining time = 1:53
-src/main/java/common/data/name.basics.tsv.smaller - 50% complete - elapsed time = 1:30 - remaining time = 1:29
-src/main/java/common/data/name.basics.tsv.smaller - 60% complete - elapsed time = 1:45 - remaining time = 1:07
-src/main/java/common/data/name.basics.tsv.smaller - 70% complete - elapsed time = 2:00 - remaining time = 0:50
-src/main/java/common/data/name.basics.tsv.smaller - 79% complete - elapsed time = 2:15 - remaining time = 0:34
-src/main/java/common/data/name.basics.tsv.smaller - 89% complete - elapsed time = 2:30 - remaining time = 0:18
-src/main/java/common/data/name.basics.tsv.smaller - 99% complete - elapsed time = 2:45 - remaining time = 0:00
-src/main/java/common/data/name.basics.tsv.smaller - 100% complete - elapsed time = 2:45 - remaining time = 0:00
+src/main/java/common/data/name.basics.tsv.smaller - 6% complete - elapsed time = 0:15 - remaining time = 3:23
+src/main/java/common/data/name.basics.tsv.smaller - 15% complete - elapsed time = 0:30 - remaining time = 2:47
+src/main/java/common/data/name.basics.tsv.smaller - 24% complete - elapsed time = 0:45 - remaining time = 2:18
+src/main/java/common/data/name.basics.tsv.smaller - 34% complete - elapsed time = 1:00 - remaining time = 1:55
+src/main/java/common/data/name.basics.tsv.smaller - 43% complete - elapsed time = 1:15 - remaining time = 1:35
+src/main/java/common/data/name.basics.tsv.smaller - 53% complete - elapsed time = 1:30 - remaining time = 1:17
+src/main/java/common/data/name.basics.tsv.smaller - 63% complete - elapsed time = 1:45 - remaining time = 0:59
+src/main/java/common/data/name.basics.tsv.smaller - 75% complete - elapsed time = 2:00 - remaining time = 0:39
+src/main/java/common/data/name.basics.tsv.smaller - 85% complete - elapsed time = 2:15 - remaining time = 0:22
+src/main/java/common/data/name.basics.tsv.smaller - 95% complete - elapsed time = 2:30 - remaining time = 0:07
+src/main/java/common/data/name.basics.tsv.smaller - 100% complete - elapsed time = 2:38 - remaining time = 0:00
 src/main/java/common/data/title.akas.tsv.smaller - 25733 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.akas.tsv.smaller - 100% complete - elapsed time = 0:13 - remaining time = 0:00
+src/main/java/common/data/title.akas.tsv.smaller - 100% complete - elapsed time = 0:12 - remaining time = 0:00
 src/main/java/common/data/title.basics.tsv.smaller - 37360 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.basics.tsv.smaller - 30% complete - elapsed time = 0:15 - remaining time = 0:33
-src/main/java/common/data/title.basics.tsv.smaller - 64% complete - elapsed time = 0:30 - remaining time = 0:16
-src/main/java/common/data/title.basics.tsv.smaller - 95% complete - elapsed time = 0:45 - remaining time = 0:02
-src/main/java/common/data/title.basics.tsv.smaller - 100% complete - elapsed time = 0:47 - remaining time = 0:00
+src/main/java/common/data/title.basics.tsv.smaller - 27% complete - elapsed time = 0:15 - remaining time = 0:38
+src/main/java/common/data/title.basics.tsv.smaller - 53% complete - elapsed time = 0:30 - remaining time = 0:26
+src/main/java/common/data/title.basics.tsv.smaller - 78% complete - elapsed time = 0:45 - remaining time = 0:12
+src/main/java/common/data/title.basics.tsv.smaller - 100% complete - elapsed time = 0:58 - remaining time = 0:00
 src/main/java/common/data/title.crew.tsv.smaller - 37375 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.crew.tsv.smaller - 38% complete - elapsed time = 0:15 - remaining time = 0:24
-src/main/java/common/data/title.crew.tsv.smaller - 64% complete - elapsed time = 0:30 - remaining time = 0:16
-src/main/java/common/data/title.crew.tsv.smaller - 87% complete - elapsed time = 0:45 - remaining time = 0:06
-src/main/java/common/data/title.crew.tsv.smaller - 100% complete - elapsed time = 0:52 - remaining time = 0:00
+src/main/java/common/data/title.crew.tsv.smaller - 35% complete - elapsed time = 0:15 - remaining time = 0:27
+src/main/java/common/data/title.crew.tsv.smaller - 60% complete - elapsed time = 0:30 - remaining time = 0:19
+src/main/java/common/data/title.crew.tsv.smaller - 81% complete - elapsed time = 0:45 - remaining time = 0:10
+src/main/java/common/data/title.crew.tsv.smaller - 100% complete - elapsed time = 0:57 - remaining time = 0:00
 src/main/java/common/data/title.episode.tsv.smaller - 25414 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.episode.tsv.smaller - 100% complete - elapsed time = 0:11 - remaining time = 0:00
+src/main/java/common/data/title.episode.tsv.smaller - 100% complete - elapsed time = 0:13 - remaining time = 0:00
 src/main/java/common/data/title.principals.tsv.smaller - 212557 total lines (15 SECOND REPORTING INTERVAL) 
-src/main/java/common/data/title.principals.tsv.smaller - 15% complete - elapsed time = 0:15 - remaining time = 1:21
+src/main/java/common/data/title.principals.tsv.smaller - 13% complete - elapsed time = 0:15 - remaining time = 1:37
 src/main/java/common/data/title.principals.tsv.smaller - 27% complete - elapsed time = 0:30 - remaining time = 1:18
-src/main/java/common/data/title.principals.tsv.smaller - 42% complete - elapsed time = 0:45 - remaining time = 1:01
-src/main/java/common/data/title.principals.tsv.smaller - 58% complete - elapsed time = 1:00 - remaining time = 0:43
-src/main/java/common/data/title.principals.tsv.smaller - 73% complete - elapsed time = 1:15 - remaining time = 0:26
-src/main/java/common/data/title.principals.tsv.smaller - 90% complete - elapsed time = 1:30 - remaining time = 0:09
-src/main/java/common/data/title.principals.tsv.smaller - 100% complete - elapsed time = 1:39 - remaining time = 0:00
+src/main/java/common/data/title.principals.tsv.smaller - 44% complete - elapsed time = 0:45 - remaining time = 0:56
+src/main/java/common/data/title.principals.tsv.smaller - 58% complete - elapsed time = 1:00 - remaining time = 0:42
+src/main/java/common/data/title.principals.tsv.smaller - 73% complete - elapsed time = 1:15 - remaining time = 0:27
+src/main/java/common/data/title.principals.tsv.smaller - 86% complete - elapsed time = 1:30 - remaining time = 0:14
+src/main/java/common/data/title.principals.tsv.smaller - 98% complete - elapsed time = 1:45 - remaining time = 0:01
+src/main/java/common/data/title.principals.tsv.smaller - 100% complete - elapsed time = 1:47 - remaining time = 0:00
 src/main/java/common/data/title.ratings.tsv.smaller - 6128 total lines (15 SECOND REPORTING INTERVAL) 
 src/main/java/common/data/title.ratings.tsv.smaller - 100% complete - elapsed time = 0:03 - remaining time = 0:00
-[INFO] Successfully applied 1 migration to schema `zipster` (execution time 06:33.254s)
+[INFO] Successfully applied 1 migration to schema `zipster` (execution time 06:49.956s)
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
@@ -317,8 +320,8 @@ src/main/java/common/data/title.ratings.tsv.smaller - 100% complete - elapsed ti
 [INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
 | Category  | Version | Description                     | Type | Installed On        | State        |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success      |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 10:52:44 | Success      |
+| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-05 10:59:36 | Success      |
 | Versioned | 2.1     | Add First and Last Name Columns | SQL  |                     | Above Target |
 | Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
 | Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
@@ -327,10 +330,109 @@ src/main/java/common/data/title.ratings.tsv.smaller - 100% complete - elapsed ti
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 06:34 min
-[INFO] Finished at: 2020-03-04T12:46:01-05:00
-[INFO] Final Memory: 9M/169M
+[INFO] Total time: 06:50 min
+[INFO] Finished at: 2020-03-05T10:59:36-05:00
+[INFO] Final Memory: 9M/148M
 [INFO] ------------------------------------------------------------------------
+Using defaults:
+    log_capture True
+          stage None
+          color True
+ stdout_capture True
+ default_format pretty
+ stderr_capture True
+   default_tags 
+  show_snippets True
+ logging_format %(levelname)s:%(name)s:%(message)s
+        dry_run False
+   show_timings True
+       userdata {}
+    show_source True
+  steps_catalog False
+          junit False
+   show_skipped True
+scenario_outline_annotation_schema {name} -- @{row.id} {examples.name}
+        summary True
+  logging_level 20
+Supplied path: "features/step_2_tests.feature"
+Primary path is to a file so using its directory
+Trying base directory: /home/howarddeiner/IdeaProjects/advanced-flyway-migrations/src/test/python/features
+Feature: Verion 1 Database # features/step_2_tests.feature:1
+
+  Scenario: Ensure that the V1_1 and V1_2 FlyWay migrations happened correctly  # features/step_2_tests.feature:3
+    Given "step_2_flyway_migrate_V1.sh" was run                                 # features/steps/common_step.py:3 0.000s
+    Then the "zipster" database schema should be                                # features/steps/step_2_tests.py:5 0.006s
+      | TABLE_NAME            | COLUMN_NAME       | ORDINAL_POSITION | DATA_TYPE | CHARACTER_MAXIMUM_LENGTH |
+      | flyway_schema_history | installed_rank    | 1                | int       | NULL                     |
+      | flyway_schema_history | version           | 2                | varchar   | 50                       |
+      | flyway_schema_history | description       | 3                | varchar   | 200                      |
+      | flyway_schema_history | type              | 4                | varchar   | 20                       |
+      | flyway_schema_history | script            | 5                | varchar   | 1000                     |
+      | flyway_schema_history | checksum          | 6                | int       | NULL                     |
+      | flyway_schema_history | installed_by      | 7                | varchar   | 100                      |
+      | flyway_schema_history | installed_on      | 8                | timestamp | NULL                     |
+      | flyway_schema_history | execution_time    | 9                | int       | NULL                     |
+      | flyway_schema_history | success           | 10               | tinyint   | NULL                     |
+      | NAME                  | NCONST            | 1                | varchar   | 31                       |
+      | NAME                  | PRIMARY_NAME      | 2                | varchar   | 255                      |
+      | NAME                  | BIRTH_YEAR        | 3                | int       | NULL                     |
+      | NAME                  | DEATH_YEAR        | 4                | int       | NULL                     |
+      | NAME_PROFESSION       | NCONST            | 1                | varchar   | 31                       |
+      | NAME_PROFESSION       | PROFESSION        | 2                | varchar   | 31                       |
+      | NAME_TITLE            | NCONST            | 1                | varchar   | 31                       |
+      | NAME_TITLE            | TCONST            | 2                | varchar   | 31                       |
+      | TITLE                 | NCONST            | 1                | varchar   | 31                       |
+      | TITLE                 | TITLE_TYPE        | 2                | varchar   | 31                       |
+      | TITLE                 | PRIMARY_TITLE     | 3                | varchar   | 1023                     |
+      | TITLE                 | ORIGINAL_TITLE    | 4                | varchar   | 1023                     |
+      | TITLE                 | IS_ADULT          | 5                | tinyint   | NULL                     |
+      | TITLE                 | START_YEAR        | 6                | int       | NULL                     |
+      | TITLE                 | END_YEAR          | 7                | int       | NULL                     |
+      | TITLE                 | RUNTIME_MINUTES   | 8                | int       | NULL                     |
+      | TITLE_AKA             | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_AKA             | ORDERING          | 2                | int       | NULL                     |
+      | TITLE_AKA             | TITLE             | 3                | varchar   | 1023                     |
+      | TITLE_AKA             | REGION            | 4                | varchar   | 15                       |
+      | TITLE_AKA             | LANGUAGE          | 5                | varchar   | 63                       |
+      | TITLE_AKA             | TYPES             | 6                | varchar   | 63                       |
+      | TITLE_AKA             | ATTRIBUTES        | 7                | varchar   | 63                       |
+      | TITLE_AKA             | IS_ORIGINAL_TITLE | 8                | tinyint   | NULL                     |
+      | TITLE_DIRECTOR        | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_DIRECTOR        | NCONST            | 2                | varchar   | 31                       |
+      | TITLE_EPISODE         | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_EPISODE         | TCONST_PARENT     | 2                | varchar   | 31                       |
+      | TITLE_EPISODE         | SEASON_NUMBER     | 3                | int       | NULL                     |
+      | TITLE_EPISODE         | EPISODE_NUMBER    | 4                | int       | NULL                     |
+      | TITLE_GENRE           | NCONST            | 1                | varchar   | 31                       |
+      | TITLE_GENRE           | GENRE             | 2                | varchar   | 31                       |
+      | TITLE_PRINCIPALS      | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_PRINCIPALS      | ORDERING          | 2                | int       | NULL                     |
+      | TITLE_PRINCIPALS      | NCONST            | 3                | varchar   | 31                       |
+      | TITLE_PRINCIPALS      | CATEGORY          | 4                | varchar   | 63                       |
+      | TITLE_PRINCIPALS      | JOB               | 5                | varchar   | 255                      |
+      | TITLE_PRINCIPALS      | CHARACTER_PLAYED  | 6                | varchar   | 255                      |
+      | TITLE_RATING          | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_RATING          | AVERAGE_RATING    | 2                | varchar   | 15                       |
+      | TITLE_RATING          | NUMBER_OF_VOTES   | 3                | int       | NULL                     |
+      | TITLE_WRITER          | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_WRITER          | NCONST            | 2                | varchar   | 31                       |
+    And the following tables have the following row counts                      # features/steps/step_2_tests.py:33 0.016s
+      | TABLE_NAME       | ROW_COUNT |
+      | NAME             | 62350     |
+      | NAME_PROFESSION  | 102914    |
+      | NAME_TITLE       | 182494    |
+      | TITLE            | 37359     |
+      | TITLE_AKA        | 25732     |
+      | TITLE_DIRECTOR   | 38757     |
+      | TITLE_EPISODE    | 25413     |
+      | TITLE_GENRE      | 65920     |
+      | TITLE_PRINCIPALS | 212556    |
+      | TITLE_RATING     | 6127      |
+
+1 feature passed, 0 failed, 0 skipped
+1 scenario passed, 0 failed, 0 skipped
+3 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.022s
 
 ```
 

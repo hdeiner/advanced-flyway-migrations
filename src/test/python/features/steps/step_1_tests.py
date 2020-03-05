@@ -2,10 +2,6 @@ import sys, os, time, pymysql
 from behave import *
 from hamcrest import *
 
-@given(u'"{script_to_run}" was run')
-def step_script_was_run(context, script_to_run):
-    pass
-
 @then(u'the "{column_to_test}" column in the {table_to_test} table should be')
 def step_check_column_in_table(context, column_to_test, table_to_test):
     try:

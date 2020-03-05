@@ -13,3 +13,7 @@ mvn -Dflyway.target=1_1 flyway:info flyway:migrate flyway:info
 
 figlet -w 160 -f small "Flyway V1_2 (initial static data)"
 mvn -Dflyway.target=1_2 flyway:info flyway:migrate flyway:info
+
+cd src/test/python
+behave -v features/step_2_tests.feature
+cd -
