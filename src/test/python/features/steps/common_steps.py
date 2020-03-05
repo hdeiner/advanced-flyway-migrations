@@ -47,9 +47,10 @@ def step_check_table_row_counts(context):
             with connection.cursor() as cursor:
                 cursor.execute(query)
                 result = cursor.fetchall()
-                connection.close()
 
             assert_that(result[0][0], equal_to(int(row_count)), 'bad row count in table '+table_name)
+
+        connection.close()
 
     except pymysql.MySQLError as e:
         print("ERROR: Unexpected error: MySQL error = " + str(e))

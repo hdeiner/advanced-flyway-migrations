@@ -5,7 +5,7 @@ figlet -w 200 -f standard "Flyway migrate to V1 (create initial database)"
 mvn compile flyway:clean
 
 cd src/main/java/common/data
-./runAt10PerCent.sh
+./runAtHalfPerCent.sh
 cd -
 
 figlet -w 160 -f small "Flyway V1_1 (initial schema)"

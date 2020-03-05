@@ -59,13 +59,13 @@ Feature: Verion 1 Database
      |TITLE_WRITER         |NCONST           |2               |varchar  |31                      |
    And the following tables have the following row counts:
      |TABLE_NAME      |ROW_COUNT|
-     |NAME            |    62350|
-     |NAME_PROFESSION |   102914|
-     |NAME_TITLE      |   182494|
-     |TITLE           |    37359|
-     |TITLE_AKA       |    25732|
-     |TITLE_DIRECTOR  |    38757|
-     |TITLE_EPISODE   |    25413|
-     |TITLE_GENRE     |    65920|
-     |TITLE_PRINCIPALS|   212556|
-     |TITLE_RATING    |     6127|
+     |NAME            |     3116|
+     |NAME_PROFESSION |     8239|
+     |NAME_TITLE      |    12243|
+     |TITLE           |     1244|
+     |TITLE_AKA       |     1286|
+     |TITLE_DIRECTOR  |     1828|
+     |TITLE_EPISODE   |     1269|
+     |TITLE_GENRE     |     2297|
+     |TITLE_PRINCIPALS|    10627|
+     |TITLE_RATING    |      306|
