@@ -40,9 +40,15 @@ done
 
 figlet -w 160 -f small "Ready MySQL for FlyWay"
 echo "CREATE USER 'FLYWAY' IDENTIFIED BY 'FLWAY';" | mysql -h 127.0.0.1 -P 3306 -u root --password=password  zipster > /dev/null
+
+cd src/test/python
+behave -v features/step_1_tests.feature
+cd -
 ```
 produces
 ```console
+howarddeiner@ubuntu:~/IdeaProjects/advanced-flyway-migrations$ ./step_1_start_mysql.sh 
+ ____  _             _     __  __       ____   ___  _       _             _            _                                                               _ 
 / ___|| |_ __ _ _ __| |_  |  \/  |_   _/ ___| / _ \| |     (_)_ __     __| | ___   ___| | _____ _ __       ___ ___  _ __ ___  _ __   ___  ___  ___  __| |
 \___ \| __/ _` | '__| __| | |\/| | | | \___ \| | | | |     | | '_ \   / _` |/ _ \ / __| |/ / _ \ '__|____ / __/ _ \| '_ ` _ \| '_ \ / _ \/ __|/ _ \/ _` |
  ___) | || (_| | |  | |_  | |  | | |_| |___) | |_| | |___  | | | | | | (_| | (_) | (__|   <  __/ | |_____| (_| (_) | | | | | | |_) | (_) \__ \  __/ (_| |
@@ -74,7 +80,46 @@ MySQL has started
 |_|_\___\__,_\__,_|\_, | |_|  |_|\_, |___/\__\_\____| |_| \___/_|   |_| |_|\_, |\_/\_/\__,_|\_, |
                    |__/          |__/                                      |__/             |__/ 
 mysql: [Warning] Using a password on the command line interface can be insecure.
+Using defaults:
+   default_tags 
+ stderr_capture True
+          junit False
+    show_source True
+          stage None
+        dry_run False
+ default_format pretty
+   show_timings True
+  steps_catalog False
+        summary True
+ logging_format %(levelname)s:%(name)s:%(message)s
+          color True
+       userdata {}
+   show_skipped True
+    log_capture True
+  logging_level 20
+ stdout_capture True
+scenario_outline_annotation_schema {name} -- @{row.id} {examples.name}
+  show_snippets True
+Supplied path: "features/step_1_tests.feature"
+Primary path is to a file so using its directory
+Trying base directory: /home/howarddeiner/IdeaProjects/advanced-flyway-migrations/src/test/python/features
+Feature: Start MySQL # features/step_1_tests.feature:1
 
+  Scenario: Ensure that proper users are in database to allow FlyWay migrations  # features/step_1_tests.feature:3
+    Given "step_1_start_mysql.sh" was run                                        # features/steps/step_1_tests.py:5 0.000s
+    Then the "User" column in the "mysql.user" table should be                   # features/steps/step_1_tests.py:9 0.003s
+      | User          |
+      | FLYWAY        |
+      | root          |
+      | user          |
+      | mysql.session |
+      | mysql.sys     |
+      | root          |
+
+1 feature passed, 0 failed, 0 skipped
+1 scenario passed, 0 failed, 0 skipped
+2 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.003s
 ```
 We have merely started up a Docker container with a local MySQL database.
 

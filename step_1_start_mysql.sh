@@ -16,3 +16,7 @@ done
 
 figlet -w 160 -f small "Ready MySQL for FlyWay"
 echo "CREATE USER 'FLYWAY' IDENTIFIED BY 'FLWAY';" | mysql -h 127.0.0.1 -P 3306 -u root --password=password  zipster > /dev/null
+
+cd src/test/python
+behave -v features/step_1_tests.feature
+cd -
