@@ -459,10 +459,15 @@ mvn -Dflyway.target=2_2 flyway:info flyway:migrate flyway:info
 
 figlet -w 160 -f small "Flyway V2_3 (remove primary_name)"
 mvn -Dflyway.target=2_3 flyway:info flyway:migrate flyway:info
+
+cd src/test/python
+behave -v features/step_3_tests.feature
+cd -
 ```
 produces
 
 ```console
+ _____ _                                       _                 _         _         __     ______     __         _ _ _                              __  
 |  ___| |_   ___      ____ _ _   _   _ __ ___ (_) __ _ _ __ __ _| |_ ___  | |_ ___   \ \   / /___ \   / /__ _ __ | (_) |_   _ __   __ _ _ __ ___   __\ \ 
 | |_  | | | | \ \ /\ / / _` | | | | | '_ ` _ \| |/ _` | '__/ _` | __/ _ \ | __/ _ \   \ \ / /  __) | | / __| '_ \| | | __| | '_ \ / _` | '_ ` _ \ / _ \ |
 |  _| | | |_| |\ V  V / (_| | |_| | | | | | | | | (_| | | | (_| | ||  __/ | || (_) |   \ V /  / __/  | \__ \ |_) | | | |_  | | | | (_| | | | | | |  __/ |
@@ -487,8 +492,8 @@ produces
 [INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
 | Category  | Version | Description                     | Type | Installed On        | State        |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success      |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 14:33:54 | Success      |
+| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-05 14:40:37 | Success      |
 | Versioned | 2.1     | Add First and Last Name Columns | SQL  |                     | Pending      |
 | Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
 | Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
@@ -497,10 +502,10 @@ produces
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:migrate (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully validated 5 migrations (execution time 00:00.009s)
+[INFO] Successfully validated 5 migrations (execution time 00:00.012s)
 [INFO] Current version of schema `zipster`: 1.2
 [INFO] Migrating schema `zipster` to version 2.1 - Add First and Last Name Columns
-[INFO] Successfully applied 1 migration to schema `zipster` (execution time 00:03.235s)
+[INFO] Successfully applied 1 migration to schema `zipster` (execution time 00:02.142s)
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
@@ -509,9 +514,9 @@ produces
 [INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
 | Category  | Version | Description                     | Type | Installed On        | State        |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success      |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-04 12:46:06 | Success      |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 14:33:54 | Success      |
+| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-05 14:40:37 | Success      |
+| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-05 14:40:54 | Success      |
 | Versioned | 2.2     | Split Primary Name              | JDBC |                     | Above Target |
 | Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
@@ -519,9 +524,9 @@ produces
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 4.113 s
-[INFO] Finished at: 2020-03-04T12:46:06-05:00
-[INFO] Final Memory: 11M/222M
+[INFO] Total time: 3.037 s
+[INFO] Finished at: 2020-03-05T14:40:54-05:00
+[INFO] Final Memory: 11M/220M
 [INFO] ------------------------------------------------------------------------
  ___ _                        __   _____   ___    __       _ _ _              _                                             _     _          __ _        _   
 | __| |_  ___ __ ____ _ _  _  \ \ / /_  ) |_  )  / /___ __| (_) |_   _ __ _ _(_)_ __  __ _ _ _ _  _   _ _  __ _ _ __  ___  (_)_ _| |_ ___   / _(_)_ _ __| |_ 
@@ -547,9 +552,9 @@ produces
 [INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
 | Category  | Version | Description                     | Type | Installed On        | State        |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success      |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-04 12:46:06 | Success      |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 14:33:54 | Success      |
+| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-05 14:40:37 | Success      |
+| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-05 14:40:54 | Success      |
 | Versioned | 2.2     | Split Primary Name              | JDBC |                     | Pending      |
 | Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
@@ -557,41 +562,39 @@ produces
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:migrate (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully validated 5 migrations (execution time 00:00.007s)
+[INFO] Successfully validated 5 migrations (execution time 00:00.006s)
 [INFO] Current version of schema `zipster`: 2.1
 [INFO] Migrating schema `zipster` to version 2.2 - Split Primary Name
 splitting PRIMARY_NAME - 62350 total lines (60 SECOND REPORTING INTERVAL) 
-splitting PRIMARY_NAME  - 3% complete - elapsed time = 1:00 - remaining time = 25:34
-splitting PRIMARY_NAME  - 7% complete - elapsed time = 2:00 - remaining time = 24:32
-splitting PRIMARY_NAME  - 11% complete - elapsed time = 3:00 - remaining time = 23:32
-splitting PRIMARY_NAME  - 14% complete - elapsed time = 4:00 - remaining time = 22:59
-splitting PRIMARY_NAME  - 18% complete - elapsed time = 5:00 - remaining time = 21:59
-splitting PRIMARY_NAME  - 22% complete - elapsed time = 6:00 - remaining time = 21:05
-splitting PRIMARY_NAME  - 25% complete - elapsed time = 7:00 - remaining time = 20:19
-splitting PRIMARY_NAME  - 29% complete - elapsed time = 8:00 - remaining time = 19:24
-splitting PRIMARY_NAME  - 32% complete - elapsed time = 9:00 - remaining time = 18:32
-splitting PRIMARY_NAME  - 36% complete - elapsed time = 10:00 - remaining time = 17:44
-splitting PRIMARY_NAME  - 39% complete - elapsed time = 11:00 - remaining time = 16:50
-splitting PRIMARY_NAME  - 42% complete - elapsed time = 12:00 - remaining time = 15:56
-splitting PRIMARY_NAME  - 46% complete - elapsed time = 13:00 - remaining time = 15:02
-splitting PRIMARY_NAME  - 49% complete - elapsed time = 14:00 - remaining time = 14:09
-splitting PRIMARY_NAME  - 52% complete - elapsed time = 15:00 - remaining time = 13:18
-splitting PRIMARY_NAME  - 55% complete - elapsed time = 16:00 - remaining time = 12:35
-splitting PRIMARY_NAME  - 59% complete - elapsed time = 17:00 - remaining time = 11:41
-splitting PRIMARY_NAME  - 62% complete - elapsed time = 18:00 - remaining time = 10:49
-splitting PRIMARY_NAME  - 65% complete - elapsed time = 19:00 - remaining time = 9:59
-splitting PRIMARY_NAME  - 68% complete - elapsed time = 20:00 - remaining time = 9:10
-splitting PRIMARY_NAME  - 71% complete - elapsed time = 21:00 - remaining time = 8:18
-splitting PRIMARY_NAME  - 74% complete - elapsed time = 22:00 - remaining time = 7:33
-splitting PRIMARY_NAME  - 77% complete - elapsed time = 23:00 - remaining time = 6:42
-splitting PRIMARY_NAME  - 80% complete - elapsed time = 24:00 - remaining time = 5:50
-splitting PRIMARY_NAME  - 83% complete - elapsed time = 25:00 - remaining time = 5:00
-splitting PRIMARY_NAME  - 86% complete - elapsed time = 26:00 - remaining time = 4:00
-splitting PRIMARY_NAME  - 89% complete - elapsed time = 27:00 - remaining time = 3:03
-splitting PRIMARY_NAME  - 93% complete - elapsed time = 28:00 - remaining time = 2:05
-splitting PRIMARY_NAME  - 95% complete - elapsed time = 29:00 - remaining time = 1:12
-splitting PRIMARY_NAME  - 98% complete - elapsed time = 30:00 - remaining time = 0:21
-[INFO] Successfully applied 1 migration to schema `zipster` (execution time 30:27.465s)
+splitting PRIMARY_NAME  - 3% complete - elapsed time = 1:00 - remaining time = 26:22
+splitting PRIMARY_NAME  - 7% complete - elapsed time = 2:00 - remaining time = 25:03
+splitting PRIMARY_NAME  - 11% complete - elapsed time = 3:00 - remaining time = 23:35
+splitting PRIMARY_NAME  - 15% complete - elapsed time = 4:00 - remaining time = 22:13
+splitting PRIMARY_NAME  - 19% complete - elapsed time = 5:00 - remaining time = 21:16
+splitting PRIMARY_NAME  - 22% complete - elapsed time = 6:00 - remaining time = 20:12
+splitting PRIMARY_NAME  - 26% complete - elapsed time = 7:00 - remaining time = 19:10
+splitting PRIMARY_NAME  - 30% complete - elapsed time = 8:00 - remaining time = 18:27
+splitting PRIMARY_NAME  - 33% complete - elapsed time = 9:00 - remaining time = 17:35
+splitting PRIMARY_NAME  - 37% complete - elapsed time = 10:00 - remaining time = 16:48
+splitting PRIMARY_NAME  - 40% complete - elapsed time = 11:00 - remaining time = 15:58
+splitting PRIMARY_NAME  - 44% complete - elapsed time = 12:00 - remaining time = 15:07
+splitting PRIMARY_NAME  - 47% complete - elapsed time = 13:00 - remaining time = 14:12
+splitting PRIMARY_NAME  - 51% complete - elapsed time = 14:00 - remaining time = 13:19
+splitting PRIMARY_NAME  - 54% complete - elapsed time = 15:00 - remaining time = 12:27
+splitting PRIMARY_NAME  - 58% complete - elapsed time = 16:00 - remaining time = 11:34
+splitting PRIMARY_NAME  - 61% complete - elapsed time = 17:00 - remaining time = 10:35
+splitting PRIMARY_NAME  - 65% complete - elapsed time = 18:00 - remaining time = 9:37
+splitting PRIMARY_NAME  - 68% complete - elapsed time = 19:00 - remaining time = 8:41
+splitting PRIMARY_NAME  - 71% complete - elapsed time = 20:00 - remaining time = 7:48
+splitting PRIMARY_NAME  - 75% complete - elapsed time = 21:00 - remaining time = 6:56
+splitting PRIMARY_NAME  - 78% complete - elapsed time = 22:00 - remaining time = 6:04
+splitting PRIMARY_NAME  - 81% complete - elapsed time = 23:00 - remaining time = 5:10
+splitting PRIMARY_NAME  - 84% complete - elapsed time = 24:00 - remaining time = 4:19
+splitting PRIMARY_NAME  - 88% complete - elapsed time = 25:00 - remaining time = 3:24
+splitting PRIMARY_NAME  - 91% complete - elapsed time = 26:00 - remaining time = 2:25
+splitting PRIMARY_NAME  - 94% complete - elapsed time = 27:00 - remaining time = 1:29
+splitting PRIMARY_NAME  - 98% complete - elapsed time = 28:00 - remaining time = 0:33
+[INFO] Successfully applied 1 migration to schema `zipster` (execution time 28:35.732s)
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
@@ -600,19 +603,19 @@ splitting PRIMARY_NAME  - 98% complete - elapsed time = 30:00 - remaining time =
 [INFO] +-----------+---------+---------------------------------+------+---------------------+--------------+
 | Category  | Version | Description                     | Type | Installed On        | State        |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success      |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success      |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-04 12:46:06 | Success      |
-| Versioned | 2.2     | Split Primary Name              | JDBC | 2020-03-04 13:16:35 | Success      |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 14:33:54 | Success      |
+| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-05 14:40:37 | Success      |
+| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-05 14:40:54 | Success      |
+| Versioned | 2.2     | Split Primary Name              | JDBC | 2020-03-05 15:09:32 | Success      |
 | Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Above Target |
 +-----------+---------+---------------------------------+------+---------------------+--------------+
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 30:28 min
-[INFO] Finished at: 2020-03-04T13:16:35-05:00
-[INFO] Final Memory: 10M/211M
+[INFO] Total time: 28:36 min
+[INFO] Finished at: 2020-03-05T15:09:32-05:00
+[INFO] Final Memory: 11M/225M
 [INFO] ------------------------------------------------------------------------
  ___ _                        __   _____   ____   __                                    _                                         __  
 | __| |_  ___ __ ____ _ _  _  \ \ / /_  ) |__ /  / / _ ___ _ __  _____ _____   _ __ _ _(_)_ __  __ _ _ _ _  _   _ _  __ _ _ __  __\ \ 
@@ -633,20 +636,20 @@ splitting PRIMARY_NAME  - 98% complete - elapsed time = 30:00 - remaining time =
 [INFO] +-----------+---------+---------------------------------+------+---------------------+---------+
 | Category  | Version | Description                     | Type | Installed On        | State   |
 +-----------+---------+---------------------------------+------+---------------------+---------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-04 12:46:06 | Success |
-| Versioned | 2.2     | Split Primary Name              | JDBC | 2020-03-04 13:16:35 | Success |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 14:33:54 | Success |
+| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-05 14:40:37 | Success |
+| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-05 14:40:54 | Success |
+| Versioned | 2.2     | Split Primary Name              | JDBC | 2020-03-05 15:09:32 | Success |
 | Versioned | 2.3     | Drop Primary Name Column        | SQL  |                     | Pending |
 +-----------+---------+---------------------------------+------+---------------------+---------+
 
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:migrate (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
-[INFO] Successfully validated 5 migrations (execution time 00:00.016s)
+[INFO] Successfully validated 5 migrations (execution time 00:00.008s)
 [INFO] Current version of schema `zipster`: 2.2
 [INFO] Migrating schema `zipster` to version 2.3 - Drop Primary Name Column
-[INFO] Successfully applied 1 migration to schema `zipster` (execution time 00:01.760s)
+[INFO] Successfully applied 1 migration to schema `zipster` (execution time 00:02.808s)
 [INFO] 
 [INFO] --- flyway-maven-plugin:6.2.4:info (default-cli) @ advanced-flyway-migrations ---
 [INFO] Database: jdbc:mysql://localhost:3306/zipster (MySQL 5.7)
@@ -655,20 +658,128 @@ splitting PRIMARY_NAME  - 98% complete - elapsed time = 30:00 - remaining time =
 [INFO] +-----------+---------+---------------------------------+------+---------------------+---------+
 | Category  | Version | Description                     | Type | Installed On        | State   |
 +-----------+---------+---------------------------------+------+---------------------+---------+
-| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-04 12:39:25 | Success |
-| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-04 12:46:00 | Success |
-| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-04 12:46:06 | Success |
-| Versioned | 2.2     | Split Primary Name              | JDBC | 2020-03-04 13:16:35 | Success |
-| Versioned | 2.3     | Drop Primary Name Column        | SQL  | 2020-03-04 13:16:40 | Success |
+| Versioned | 1.1     | Create Initial IMDB Schema      | SQL  | 2020-03-05 14:33:54 | Success |
+| Versioned | 1.2     | Load Initial IMDB Data          | JDBC | 2020-03-05 14:40:37 | Success |
+| Versioned | 2.1     | Add First and Last Name Columns | SQL  | 2020-03-05 14:40:54 | Success |
+| Versioned | 2.2     | Split Primary Name              | JDBC | 2020-03-05 15:09:32 | Success |
+| Versioned | 2.3     | Drop Primary Name Column        | SQL  | 2020-03-05 15:09:36 | Success |
 +-----------+---------+---------------------------------+------+---------------------+---------+
 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 3.117 s
-[INFO] Finished at: 2020-03-04T13:16:40-05:00
+[INFO] Total time: 3.637 s
+[INFO] Finished at: 2020-03-05T15:09:37-05:00
 [INFO] Final Memory: 11M/223M
 [INFO] ------------------------------------------------------------------------
+Using defaults:
+   default_tags 
+scenario_outline_annotation_schema {name} -- @{row.id} {examples.name}
+ stderr_capture True
+  logging_level 20
+  show_snippets True
+          junit False
+        dry_run False
+  steps_catalog False
+ logging_format %(levelname)s:%(name)s:%(message)s
+       userdata {}
+   show_skipped True
+    show_source True
+          color True
+          stage None
+    log_capture True
+   show_timings True
+ stdout_capture True
+        summary True
+ default_format pretty
+Supplied path: "features/step_3_tests.feature"
+Primary path is to a file so using its directory
+Trying base directory: /home/howarddeiner/IdeaProjects/advanced-flyway-migrations/src/test/python/features
+Feature: Verion 2 Database # features/step_3_tests.feature:1
+
+  Scenario: Ensure that the V2_1, V2_2, and V2_3 FlyWay migrations happened correctly  # features/step_3_tests.feature:3
+    Given "step_3_flyway_migrate_V2.sh" was run                                        # features/steps/common_steps.py:6 0.000s
+    Then the "zipster" database schema should be                                       # features/steps/common_steps.py:10 0.006s
+      | TABLE_NAME            | COLUMN_NAME       | ORDINAL_POSITION | DATA_TYPE | CHARACTER_MAXIMUM_LENGTH |
+      | flyway_schema_history | installed_rank    | 1                | int       | NULL                     |
+      | flyway_schema_history | version           | 2                | varchar   | 50                       |
+      | flyway_schema_history | description       | 3                | varchar   | 200                      |
+      | flyway_schema_history | type              | 4                | varchar   | 20                       |
+      | flyway_schema_history | script            | 5                | varchar   | 1000                     |
+      | flyway_schema_history | checksum          | 6                | int       | NULL                     |
+      | flyway_schema_history | installed_by      | 7                | varchar   | 100                      |
+      | flyway_schema_history | installed_on      | 8                | timestamp | NULL                     |
+      | flyway_schema_history | execution_time    | 9                | int       | NULL                     |
+      | flyway_schema_history | success           | 10               | tinyint   | NULL                     |
+      | NAME                  | NCONST            | 1                | varchar   | 31                       |
+      | NAME                  | FIRST_NAME        | 2                | varchar   | 255                      |
+      | NAME                  | LAST_NAME         | 3                | varchar   | 255                      |
+      | NAME                  | BIRTH_YEAR        | 4                | int       | NULL                     |
+      | NAME                  | DEATH_YEAR        | 5                | int       | NULL                     |
+      | NAME_PROFESSION       | NCONST            | 1                | varchar   | 31                       |
+      | NAME_PROFESSION       | PROFESSION        | 2                | varchar   | 31                       |
+      | NAME_TITLE            | NCONST            | 1                | varchar   | 31                       |
+      | NAME_TITLE            | TCONST            | 2                | varchar   | 31                       |
+      | TITLE                 | NCONST            | 1                | varchar   | 31                       |
+      | TITLE                 | TITLE_TYPE        | 2                | varchar   | 31                       |
+      | TITLE                 | PRIMARY_TITLE     | 3                | varchar   | 1023                     |
+      | TITLE                 | ORIGINAL_TITLE    | 4                | varchar   | 1023                     |
+      | TITLE                 | IS_ADULT          | 5                | tinyint   | NULL                     |
+      | TITLE                 | START_YEAR        | 6                | int       | NULL                     |
+      | TITLE                 | END_YEAR          | 7                | int       | NULL                     |
+      | TITLE                 | RUNTIME_MINUTES   | 8                | int       | NULL                     |
+      | TITLE_AKA             | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_AKA             | ORDERING          | 2                | int       | NULL                     |
+      | TITLE_AKA             | TITLE             | 3                | varchar   | 1023                     |
+      | TITLE_AKA             | REGION            | 4                | varchar   | 15                       |
+      | TITLE_AKA             | LANGUAGE          | 5                | varchar   | 63                       |
+      | TITLE_AKA             | TYPES             | 6                | varchar   | 63                       |
+      | TITLE_AKA             | ATTRIBUTES        | 7                | varchar   | 63                       |
+      | TITLE_AKA             | IS_ORIGINAL_TITLE | 8                | tinyint   | NULL                     |
+      | TITLE_DIRECTOR        | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_DIRECTOR        | NCONST            | 2                | varchar   | 31                       |
+      | TITLE_EPISODE         | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_EPISODE         | TCONST_PARENT     | 2                | varchar   | 31                       |
+      | TITLE_EPISODE         | SEASON_NUMBER     | 3                | int       | NULL                     |
+      | TITLE_EPISODE         | EPISODE_NUMBER    | 4                | int       | NULL                     |
+      | TITLE_GENRE           | NCONST            | 1                | varchar   | 31                       |
+      | TITLE_GENRE           | GENRE             | 2                | varchar   | 31                       |
+      | TITLE_PRINCIPALS      | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_PRINCIPALS      | ORDERING          | 2                | int       | NULL                     |
+      | TITLE_PRINCIPALS      | NCONST            | 3                | varchar   | 31                       |
+      | TITLE_PRINCIPALS      | CATEGORY          | 4                | varchar   | 63                       |
+      | TITLE_PRINCIPALS      | JOB               | 5                | varchar   | 255                      |
+      | TITLE_PRINCIPALS      | CHARACTER_PLAYED  | 6                | varchar   | 255                      |
+      | TITLE_RATING          | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_RATING          | AVERAGE_RATING    | 2                | varchar   | 15                       |
+      | TITLE_RATING          | NUMBER_OF_VOTES   | 3                | int       | NULL                     |
+      | TITLE_WRITER          | TCONST            | 1                | varchar   | 31                       |
+      | TITLE_WRITER          | NCONST            | 2                | varchar   | 31                       |
+    And the following tables have the following row counts                             # features/steps/common_steps.py:38 0.019s
+      | TABLE_NAME       | ROW_COUNT |
+      | NAME             | 62350     |
+      | NAME_PROFESSION  | 102914    |
+      | NAME_TITLE       | 182494    |
+      | TITLE            | 37359     |
+      | TITLE_AKA        | 25732     |
+      | TITLE_DIRECTOR   | 38757     |
+      | TITLE_EPISODE    | 25413     |
+      | TITLE_GENRE      | 65920     |
+      | TITLE_PRINCIPALS | 212556    |
+      | TITLE_RATING     | 6127      |
+    And the NAME table has the following sample results                                # features/steps/step_3_tests.py:5 0.127s
+      | NCONST    | FIRST_NAME | LAST_NAME | BIRTH_YEAR | DEATH_YEAR |
+      | nm0000007 | Humphrey   | Bogart    | 1899       | 1957       |
+      | nm0000859 | Lionel     | Barrymore | 1878       | 1954       |
+      | nm0000093 | Brad       | Pitt      | 1963       | -1         |
+      | nm0000678 | Kathleen   | Turner    | 1954       | -1         |
+      | nm0000187 | Madonna    |           | 1958       | -1         |
+      | nm0001145 | Divine     |           | 1945       | 1988       |
+
+1 feature passed, 0 failed, 0 skipped
+1 scenario passed, 0 failed, 0 skipped
+4 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.152s
 
 ```
 
