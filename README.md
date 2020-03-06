@@ -8,7 +8,7 @@ We need to start treating our databases like code.
 - Pets vs cattle analogy.  Would you treat your code like a pet and painstakingly patch each byte that changes from release to release hoping that everything still works, or want to be able to build, test, and then deploy it confidently from source using a version controlled repository?
 - DevOps culture embraces the team as a whole creating outcomes, rather than exhaustive estimating, managing cross silo dependencies, and tracking work progress in what (by other names) is nothing different than a project plan.
 
-This project demonstrates the use of an open source tool called FlyWay to help us create and migrate databases through their development and growth.  But what this project also demonstrates is that where SQL alone is inadequate to express a mrigration from version N to version N+1, we can use some of the more advanced features of FlyWay (such as a JDBC based migration instead if the usual SQL based migration).
+This project demonstrates the use of an open source tool called FlyWay to help us create and migrate databases through their development and growth.  But what this project also demonstrates is that where SQL alone is inadequate to express a mrigration from version N to version N+1, we can use some of the more advanced features of FlyWay (such as a JDBC based migration instead if the usual SQL based migration).  In other words, this project shows how both Schema Migration and Data Migrattion can work together in a repository based manner with automated testing used to validate all of the actions.
 
 We will start with a database used by IMDB.  We will go through the following migrations:
 
